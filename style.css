@@ -2,9 +2,8 @@
 Create a CSS file for your application
 https://www.w3schools.com/css/default.asp
 
-1. Assign a class attribute to each of the table headings to allow you to apply the same styling to them as a group.
 
-2. Add styling of your choice (font size, color, etc.) for the table headings, using the class name you created in step 1, to your application CSS file.
+
 
 3. Assign an Id attribute to the home page heading to allow you go apply styling only to it.
 
@@ -19,3 +18,44 @@ https://www.w3schools.com/css/default.asp
 
                                                                     When you are finished, submit your lab work following the instructions under "Lab Submissions".
 */
+body {
+    background-color: lightblue;
+}
+
+/*
+    I was unsure if you wanted us to use "th" for the group, or make our own. So i did both but they have the same specs.
+ */
+.tableHeader {
+    font-family: Elephant;
+}
+
+th {
+    font-family: Elephant;
+}
+
+#homeHeader {
+
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}
+
+th {
+    height: 50px;
+}
+
+li {
+    display: inline;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
