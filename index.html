@@ -10,11 +10,11 @@
         <div>
             <div>Welcome</div>
             <img src="1000px-HawthorneBridge-Pano.jpg" alt="Hawthorne Bridge">
-            <div id="homeHeading"><h2>Lab 1</h2></div>
+            <div id="homeHeader"><h2>Lab 1</h2></div>
             <p>^ This is My Home Page</p>
         </div>
         <br>
-        <div id="navBar">
+        <div class="navBar">
             <ul>
                 <li><a href="index.html">Home Page</a></li>
                 <li><a href="person.html">Person Page</a></li>
@@ -23,6 +23,14 @@
             </ul>
         </div>
     </header>
+
+    <div id="dateAndTime">
+        <button type="button" onclick="document.getElementById('demo').innerHTML = Date()">
+                Click me to display Date and Time.</button>
+
+            <p id="demo"></p>
+    </div>
+
     <div id="paragraphs">
         <div>
             <h4>Article 1</h4>
@@ -37,14 +45,6 @@
             <p>Vivamus condimentum vestibulum orci, eu tristique nisl. Etiam id tempor felis, at facilisis risus. Vestibulum facilisis a nulla in fermentum. Vivamus quam ex, euismod non volutpat et, pulvinar eu tellus. Cras a sem vel arcu vestibulum porta. Proin facilisis urna id semper convallis. Nunc mattis sit amet massa at vehicula.</p>
         </div>
     </div>
-    <div>
-        <div id="dateAndTime">
-            <button type="button"
-                    onclick="document.getElementById('demo').innerHTML = Date()">
-                Click me to display Date and Time.</button>
 
-            <p id="demo"></p>
-        </div>
-    </div>
 </body>
 </html>
