@@ -1,0 +1,66 @@
+
+body {
+    background-color: lightblue;
+
+}
+
+/*
+    I was unsure if you wanted us to use "th" for the group, or make our own. So i did both but they have the same specs.
+ */
+.tableHeader {
+    font-family: Elephant;
+}
+h2 {
+    text-align: center;
+}
+th {
+    font-family: Elephant;
+}
+
+#homeHeader {
+    color: coral;
+    font-family: "Courier New";
+}
+
+.navBar {
+    background-color: white;
+    padding: 5px;
+    margin: 1px;
+    border: 2px dotted black;
+}
+
+#paragraphs {
+    padding: 5px;
+    margin: 1px;
+    border: 1px solid darkblue;
+}
+
+#dateAndTime {
+    border: 2px solid black;
+    padding: 15px;
+    margin: 15px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}
+
+th {
+    height: 50px;
+}
+
+li {
+    display: inline;
+    padding-left:50px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
