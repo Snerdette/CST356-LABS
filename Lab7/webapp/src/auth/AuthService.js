@@ -12,10 +12,10 @@ class AuthService {
     authNotifier = new EventEmitter()
 
     auth0 = new auth0.WebAuth({
-        domain: 'oit-gaden.auth0.com',
-        clientID: '0M0dxH3TAnzBj0L5OAC38knTCkLukZV0',
+        domain: 'snerdette.auth0.com',
+        clientID: '3hgPoKyCMhjO5r27npy2hCyjqOPpLsv9',
         redirectUri: 'http://localhost:8080/callback',
-        audience: 'http://oit-gaden/webapi2',
+        audience: 'http://snerdette/webapi',
         responseType: 'token id_token',
         scope: 'openid'
     })
