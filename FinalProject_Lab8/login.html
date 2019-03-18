@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Person's</title>
+    <!--removeIf(production)-->
+    <script src="Javascript/app.js" type="text/javascript"></script>
+    <link  rel="stylesheet" type="text/css" href="style.css" />
+	<!--endRemoveIf(production)-->
+	<!-- inject:css -->
+        <!-- endinject -->
+</head>
+<body>
+<header>
+    <div class="boxheader">
+        <h2>Login Page</h2>
+    </div>
+    <br>
+    <div class="navBar">
+        <ul>
+            <li><a href="index.html">Home Page</a></li>
+            <li><a href="person.html">Person Page</a></li>
+            <li><a href="students.html">Student Page</a></li>
+            <li><a href="login.html">Login/Out</a></li>
+        </ul>
+    </div>
+</header>
+<div>
+    <form action="/action_page.php">
+        Username:<br>
+        <input type="text" name="username" >
+        <br>
+        Password:<br>
+        <input type="password" name="password">
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
+</div>
+<!--removeIf(production)-->
+        <script src='js/login.js'></script>
+        <!--endRemoveIf(production)-->
+        
+        <!-- inject:js -->
+        <!-- endinject -->
+
+        <script>
+            $(document).ready(function() {
+                initializeRegistration();
+            });
+        </script>
+
+</body>
+</html>

@@ -1,0 +1,4 @@
+1. docker rm dbserver
+2. docker rm webapi
+3. docker rm webapp
+4. docker-compose up --build // Builds all containers and starts them

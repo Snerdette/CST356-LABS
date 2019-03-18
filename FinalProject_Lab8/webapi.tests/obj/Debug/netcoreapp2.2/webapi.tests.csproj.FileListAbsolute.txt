@@ -1,0 +1,14 @@
+C:\Users\katyl\Workspace\OIT\CST356\CST356-LABS\Lab8\webapi.tests\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.dll
+C:\Users\katyl\Workspace\OIT\CST356\CST356-LABS\Lab8\webapi.tests\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.pdb
+C:\Users\katyl\Workspace\OIT\CST356\CST356-LABS\Lab8\webapi.tests\bin\Debug\netcoreapp2.2\nunit.engine.netstandard.dll
+C:\Users\katyl\Workspace\OIT\CST356\CST356-LABS\Lab8\webapi.tests\bin\Debug\netcoreapp2.2\webapi.tests.deps.json
+C:\Users\katyl\Workspace\OIT\CST356\CST356-LABS\Lab8\webapi.tests\bin\Debug\netcoreapp2.2\webapi.tests.runtimeconfig.json
+C:\Users\katyl\Workspace\OIT\CST356\CST356-LABS\Lab8\webapi.tests\bin\Debug\netcoreapp2.2\webapi.tests.runtimeconfig.dev.json
+C:\Users\katyl\Workspace\OIT\CST356\CST356-LABS\Lab8\webapi.tests\bin\Debug\netcoreapp2.2\webapi.tests.dll
+C:\Users\katyl\Workspace\OIT\CST356\CST356-LABS\Lab8\webapi.tests\bin\Debug\netcoreapp2.2\webapi.tests.pdb
+C:\Users\katyl\Workspace\OIT\CST356\CST356-LABS\Lab8\webapi.tests\obj\Debug\netcoreapp2.2\webapi.tests.csprojAssemblyReference.cache
+C:\Users\katyl\Workspace\OIT\CST356\CST356-LABS\Lab8\webapi.tests\obj\Debug\netcoreapp2.2\webapi.tests.csproj.CoreCompileInputs.cache
+C:\Users\katyl\Workspace\OIT\CST356\CST356-LABS\Lab8\webapi.tests\obj\Debug\netcoreapp2.2\webapi.tests.AssemblyInfoInputs.cache
+C:\Users\katyl\Workspace\OIT\CST356\CST356-LABS\Lab8\webapi.tests\obj\Debug\netcoreapp2.2\webapi.tests.AssemblyInfo.cs
+C:\Users\katyl\Workspace\OIT\CST356\CST356-LABS\Lab8\webapi.tests\obj\Debug\netcoreapp2.2\webapi.tests.dll
+C:\Users\katyl\Workspace\OIT\CST356\CST356-LABS\Lab8\webapi.tests\obj\Debug\netcoreapp2.2\webapi.tests.pdb
