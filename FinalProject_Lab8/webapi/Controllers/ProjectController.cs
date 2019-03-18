@@ -10,24 +10,24 @@ namespace webapi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PersonController : ControllerBase
+    public class ProjectController : ControllerBase
     {
-        private readonly SchoolContext _dbContext;
+        private readonly WorkContext _dbContext;
 
-        public PersonController(SchoolContext dbContext)
+        public ProjectController(WorkContext dbContext)
         {
             _dbContext = dbContext;
         }
         /* 
         // GET api/values
         [HttpGet]
-        public ActionResult<List<Person>> Get()
+        public ActionResult<List<Project>> Get()
         {
-            var person = _dbContext.Person
-                .SingleOrDefault(p => p.PersonId == person_id);
+            var project = _dbContext.Project
+                .SingleOrDefault(p => p.ProjectId == project_id);
 
-            if (person != null) {
-                return person;
+            if (project != null) {
+                return project;
             } else {
                 return NotFound();
             }
@@ -35,15 +35,15 @@ namespace webapi.Controllers
         */
 
           [HttpGet]
-        public ActionResult<List<Person>> GetAllPersons()
+        public ActionResult<List<Project>> GetAllProjects()
         {
-            return Ok(_dbContext.Person.ToList());
+            return Ok(_dbContext.Project.ToList());
         }
 
 
         /* 
-        private List<Person> getPersons(){
-            return _dbContext.getPersons();
+        private List<Project> getProjects(){
+            return _dbContext.getProjects();
         }
         */
 
