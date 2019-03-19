@@ -6,7 +6,10 @@ using ProjectBusinessRules;
 public class ProjectService : IProjectService
 {
     private readonly IProjectRepository _projectRespository;
+
+    //private readonly ProjectBusinessRules _projectBusinessRules;
     private readonly ILogger _logger;
+
 
     public ProjectService(IProjectRepository projectRepository, ILoggerFactory loggerFactory)
     {
@@ -27,12 +30,8 @@ public class ProjectService : IProjectService
                 Type = project.Type,
                 Site = project.Site,
                 StartDate = project.StartDate,
-                EndDate = project.EndDate,
+                EndDate = project.EndDate
             });
-            if (ProjectBusinessRules.isGroupProject(project))
-            {
-                _logger.LogInformation("Found isGroup project: " + project.ProjectId);
-            }
             projectCount++;
         }
 

@@ -17,14 +17,22 @@ namespace Database.Entities{
         public string Type {get; set;}
 
         [Column("site")]
-        public string site {get; set;}
+        public string Site {get; set;}
 
         [Column("start_date")]
-        public string Start_Date {get; set;}
+        public string StartDate {get; set;}
+        
+        [Column("event_date")]
+        public string EndDate {get; set;}
 
-        [Column("end_date")]
-        public string End_Date {get; set;}
+    [Column("event_id")]
+        public long EventId { get; set; }
+        public Event Event { get; set; }
 
-        public Student Student { get; set; }
+    [Column("blog_id")]
+        public long BlogId { get; set; }
+        public Blog Blog { get; set; }
+
+    }
     }
 }

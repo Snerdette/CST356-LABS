@@ -4,7 +4,10 @@ using Database.Entities;
 public interface IProjectRepository
 {
     List<Project> GetAllProjects();
+
     Project GetProjectById(long projectId);
+
+   // bool isGroupProject(Project project);
 
     void AddProject(Project project);
 

@@ -5,5 +5,5 @@ public interface IProjectService
 {
     List<ProjectDto> GetAllProjects();
 
-    bool isGroupProject(Project project);
+    //bool isGroupProject(Project project);
 }

@@ -36,6 +36,20 @@ public class ProjectRepository : IProjectRepository
         return _dbContext.Project.SingleOrDefault(p => p.ProjectId == projectId);
     }
 
+    public bool isGroupProject(Project project){
+       // _dbContext.getProjectById(project);
+       
+       if(_dbcontext.Project.isGroupProject(project)){
+           return true;
+       }
+      //return _dbcontext.Project.isGroupProject(project);
+
+        //if(project.getIsGroup()){
+        //    isGroup = true;
+        //}
+        //return isGroup;
+    }
+
     public void AddProject(Project project)
     {
         _dbContext.Project.Add(project);
@@ -50,9 +64,9 @@ public class ProjectRepository : IProjectRepository
         {
             project.Title = projectUpdate.Title;
             project.Type = projectUpdate.Type;
-            project.Site = projectUpdate.Site;
-            project.StartDate = projectUpdate.StarDate;
-            project.EndDate = projectUpdate.EndDate;
+            //project.Site = projectUpdate.Site;
+            //project.StartDate = projectUpdate.StartDate;
+            //project.EndDate = projectUpdate.EndDate;
 
 
             _dbContext.Update(project);

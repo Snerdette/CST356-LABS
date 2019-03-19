@@ -10,36 +10,36 @@ namespace Database.Entities
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class StudentController : ControllerBase
+    public class EventController : ControllerBase
     {
 
-        private readonly SchoolContext _dbContext;
+        private readonly WorkContext _dbContext;
 
-        public StudentController(SchoolContext dbContext)
+        public EventController(WorkContext dbContext)
         {
             _dbContext = dbContext;
         }
        
          [HttpGet]
-        public ActionResult<List<Student>> GetAllStudents()
+        public ActionResult<List<Event>> GetAllEvents()
         {
-            return Ok(_dbContext.Student.ToList());
+            return Ok(_dbContext.Event.ToList());
         }
 
         /* 
-         public ActionResult<Student> getSpecial(int id)
+         public ActionResult<Event> getSpecial(int id)
         {
-             var student = _dbContext.getStudent(id);
+             var event = _dbContext.getEvent(id);
 
-            if (student != null) {
-                return student;
+            if (event != null) {
+                return event;
             } 
-            return student;
+            return event;
         }*/
 
-         public ActionResult<int> getStudentCount(Student student)
+         public ActionResult<int> getEventCount(Event event)
         {
-            return Student.StudentCount;
+            return Event.EventCount;
         }
 
         // GET api/values/5

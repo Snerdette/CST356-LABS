@@ -11,8 +11,9 @@
         <div class="navBar">
             <ul>
                 <li><span href="index.html">Home Page</span></li>
-                <li><span href="person.html">Person Page</span></li>
-                <li><span href="students.html">Student Page</span></li>
+                <li><span href="project.html">Projects Page</span></li>
+                <li><span href="event.html">Events Page</span></li>
+                <li><span href="blog.html">My Blog</span></li>
                 <li><span href="login.html">Login/Out</span></li>
             </ul>
         </div>
@@ -27,16 +28,16 @@
 
     <div id="paragraphs">
         <div>
-            <h4>Article 1</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin egestas commodo mollis. Nunc sit amet dui ac arcu pulvinar blandit at nec mauris. Maecenas sit amet hendrerit est, sed elementum justo. Maecenas sollicitudin orci sed convallis varius. Morbi vel sapien et libero auctor pretium ut a dui. Nulla eget ultrices elit, nec aliquet felis. Integer gravida ligula placerat enim eleifend, eu dignissim arcu malesuada. Etiam imperdiet efficitur sem, sed rutrum augue commodo ut. Nullam libero nisi, eleifend id lorem tristique, egestas eleifend lacus. In luctus diam nec felis consequat, vel egestas erat faucibus. Sed ultricies sapien nisi. Nunc turpis enim, blandit laoreet sagittis eu, tincidunt nec felis. Aliquam sit amet molestie nisi. Aenean tincidunt porta sem id sollicitudin. Ut iaculis, massa aliquam dictum convallis, eros turpis semper nulla, ac aliquet felis dui nec urna. Duis tempor, mauris et interdum tincidunt, turpis elit dictum nulla, ut accumsan dolor ligula sed ligula.</p>
+            <h4>Projects Page</h4>
+            <p>The Projects page holds a list of all the projects i've worked on, some are linked to events and blog posts but others are not.</p>
         </div>
         <div>
-            <h4>Article 2</h4>
-            <p>In luctus eu lectus eget vehicula. Suspendisse vitae elit viverra, consectetur tortor non, lobortis quam. In commodo sapien a enim pharetra imperdiet. Cras est dui, tristique ac hendrerit a, varius nec lectus. Nulla iaculis metus neque, ultrices consequat ante molestie ac. Sed vestibulum risus vitae lacus vulputate porttitor. Integer dui dui, euismod non eleifend vulputate, luctus a lorem. Nunc nisl arcu, congue ut cursus ut, lobortis eu sem. Etiam blandit ipsum ultrices fermentum semper. Vivamus sodales, enim nec finibus blandit, mi mauris vulputate velit, sed placerat risus sem et nulla. Morbi vulputate sit amet magna nec facilisis. Proin eget elit nec dui laoreet commodo. Vestibulum convallis dapibus turpis at fermentum. Curabitur in mauris velit. Suspendisse maximus rutrum mattis.</p>
+            <h4>Events Page</h4>
+            <p>The Events Page holds a lit of events that are sometimes linked to events and related blog posts.</p>
         </div>
         <div>
-            <h4>Article 3</h4>
-            <p>Vivamus condimentum vestibulum orci, eu tristique nisl. Etiam id tempor felis, at facilisis risus. Vestibulum facilisis a nulla in fermentum. Vivamus quam ex, euismod non volutpat et, pulvinar eu tellus. Cras a sem vel arcu vestibulum porta. Proin facilisis urna id semper convallis. Nunc mattis sit amet massa at vehicula.</p>
+            <h4>My Blog</h4>
+            <p>My blog hold everything from rants and raves to my opinion on a tv show, it is sometimes linked to Projects and Events.</p>
         </div>
     </div>
 </div>

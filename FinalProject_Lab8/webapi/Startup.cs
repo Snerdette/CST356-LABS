@@ -36,7 +36,7 @@ namespace webapi
             services.AddSingleton<IConfiguration>(Configuration);
             
             services.AddDbContext<SchoolContext>(options =>
-                options.UseNpgsql(Configuration.GetConnectionString("SchoolDatabase")));
+                options.UseNpgsql(Configuration.GetConnectionString("ProjectDatabase")));
                 
             services.AddMvc().AddJsonOptions(
                 options => {
@@ -48,8 +48,8 @@ namespace webapi
 
         private void RegisterApplicationServices(IServiceCollection services)
         {
-            services.AddScoped<IStudentRepository, StudentRepository>();
-            services.AddScoped<IStudentService, StudentService>();
+            services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IProjectService, ProjectService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
