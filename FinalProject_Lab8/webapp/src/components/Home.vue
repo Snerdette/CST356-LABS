@@ -44,14 +44,20 @@
 </template>
 
 <script>
-export default {
-  name: 'Home',
-  data () {
-    return {
-
-    }
+  // var authService = require('../auth/AuthService');
+  export default {
+    name: 'home',
+    data () {
+      return {
+        error: ''
+      }
+    },
+    // methods: {
+    //     login: function() {
+    //       authService.login();
+    //     }
+    // },
   }
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

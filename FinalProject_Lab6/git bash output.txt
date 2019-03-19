@@ -1,0 +1,275 @@
+---FinalProject_Lab6
+
+git bash feed:
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalProb6 (master)
+$ docker-compose up --build
+Creating network "finalproject_lab6_default" with the default driver
+Building webapi
+Step 1/10 : FROM microsoft/dotnet:sdk AS build-env
+ ---> 409be5f5f635
+Step 2/10 : WORKDIR /app
+ ---> Using cache
+ ---> e8d578154c91
+Step 3/10 : COPY *.csproj ./
+ ---> Using cache
+ ---> 23bb11362fb9
+Step 4/10 : RUN dotnet restore
+ ---> Using cache
+ ---> 6dca30efce4e
+Step 5/10 : COPY . ./
+ ---> Using cache
+ ---> 2cd57941c963
+Step 6/10 : RUN dotnet publish -c Release -o out
+ ---> Using cache
+ ---> 5d5cce09655a
+Step 7/10 : FROM microsoft/dotnet:aspnetcore-runtime
+ ---> fbd2e2ad00ea
+Step 8/10 : WORKDIR /app
+ ---> Using cache
+ ---> 106420fdfe16
+Step 9/10 : COPY --from=build-env /app/out .
+ ---> Using cache
+ ---> 24f3489e0b90
+Step 10/10 : ENTRYPOINT ["dotnet", "webapi.dll"]
+ ---> Using cache
+ ---> 22bd7eb8eff5
+Successfully built 22bd7eb8eff5
+Successfully tagged webapi:latest
+Building webapp
+Step 1/4 : FROM nginx:alpine
+ ---> b411e34b4606
+Step 2/4 : COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+ ---> Using cache
+ ---> 545e64ff1307
+Step 3/4 : COPY ./dist /usr/share/nginx/app/
+ ---> Using cache
+ ---> 4551c3ffdd9d
+Step 4/4 : EXPOSE 80
+ ---> Using cache
+ ---> 449c64b295dc
+Successfully built 449c64b295dc
+Successfully tagged webapp:latest
+Creating webapi   ... error
+Creating dbserver ...
+
+ERROR: for webapi  Cannot create container for service webapi: Conflict. tainer name "/webapi" is already in use by container "5c0018fad258fce41a061c81692fd568ed5beaa9fb4780fe4c3097943". You have to remove (or rename) tCreating dbserver ... error
+
+ERROR: for dbserver  Cannot create container for service dbserver: Confli container name "/dbserver" is already in use by container "fadac3c1065ed7f3e336881d032a1ca60a69a3080b4f3ee2d3b1c689b". You have to remove (or renat container to be able to reuse that name.
+
+ERROR: for webapi  Cannot create container for service webapi: Conflict. tainer name "/webapi" is already in use by container "5c0018fad258fce41a061c81692fd568ed5beaa9fb4780fe4c3097943". You have to remove (or rename) ttainer to be able to reuse that name.
+
+ERROR: for dbserver  Cannot create container for service dbserver: Confli container name "/dbserver" is already in use by container "fadac3c1065ed7f3e336881d032a1ca60a69a3080b4f3ee2d3b1c689b". You have to remove (or renat container to be able to reuse that name.
+Encountered errors while bringing up the project.
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalProb6 (master)
+$ ^C
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker rm fadac3c1065ed4f596197f3e336881d032a1ca60a69a3080b4f3ee2d3b1c6
+Error response from daemon: You cannot remove a running container fadac3c Stop the container before attempting removal or force remove
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ ^C
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker rm fadac3c1065ed4f596197f3e336881d032a1ca60a69a3080b4f3ee2d3b1c6
+Error response from daemon: You cannot remove a running container fadac3c Stop the container before attempting removal or force remove
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker-compose down
+Removing network finalproject_lab6_default
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker rm fadac3c1065ed4f596197f3e336881d032a1ca60a69a3080b4f3ee2d3b1c6
+Error response from daemon: You cannot remove a running container fadac3c Stop the container before attempting removal or force remove
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker images ls
+REPOSITORY          TAG                 IMAGE ID            CREATED
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED AMES
+0f7e9f389b59        webapp              "nginx -g 'daemon of…"   37 minutebapp
+5c0018fad258        c0853d07cf1d        "dotnet webapi.dll"      About anebapi
+fadac3c1065e        postgres            "docker-entrypoint.s…"   About anbserver
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker kill webapp
+webapp
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker kill c0853d07cf1d
+Error response from daemon: Cannot kill container: c0853d07cf1d: No such
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker ps
+CONTAINER ID        IMAGE               COMMAND                  CREATED
+5c0018fad258        c0853d07cf1d        "dotnet webapi.dll"      About an
+fadac3c1065e        postgres            "docker-entrypoint.s…"   About an
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker kill webapi
+webapi
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker kill dbserver
+dbserver
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker-compose up --build
+Creating network "finalproject_lab6_default" with the default driver
+Building webapi
+Step 1/10 : FROM microsoft/dotnet:sdk AS build-env
+ ---> 409be5f5f635
+Step 2/10 : WORKDIR /app
+ ---> Using cache
+ ---> e8d578154c91
+Step 3/10 : COPY *.csproj ./
+ ---> Using cache
+ ---> 23bb11362fb9
+Step 4/10 : RUN dotnet restore
+ ---> Using cache
+ ---> 6dca30efce4e
+Step 5/10 : COPY . ./
+ ---> Using cache
+ ---> 2cd57941c963
+Step 6/10 : RUN dotnet publish -c Release -o out
+ ---> Using cache
+ ---> 5d5cce09655a
+Step 7/10 : FROM microsoft/dotnet:aspnetcore-runtime
+ ---> fbd2e2ad00ea
+Step 8/10 : WORKDIR /app
+ ---> Using cache
+ ---> 106420fdfe16
+Step 9/10 : COPY --from=build-env /app/out .
+ ---> Using cache
+ ---> 24f3489e0b90
+Step 10/10 : ENTRYPOINT ["dotnet", "webapi.dll"]
+ ---> Using cache
+ ---> 22bd7eb8eff5
+Successfully built 22bd7eb8eff5
+Successfully tagged webapi:latest
+Building webapp
+Step 1/4 : FROM nginx:alpine
+ ---> b411e34b4606
+Step 2/4 : COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+ ---> Using cache
+ ---> 545e64ff1307
+Step 3/4 : COPY ./dist /usr/share/nginx/app/
+ ---> Using cache
+ ---> 4551c3ffdd9d
+Step 4/4 : EXPOSE 80
+ ---> Using cache
+ ---> 449c64b295dc
+Successfully built 449c64b295dc
+Successfully tagged webapp:latest
+Creating dbserver ... error
+Creating webapi   ...
+
+ERROR: for dbserver  Cannot create container for service dbserver: ConfliCreating webapi   ... error
+
+ERROR: for webapi  Cannot create container for service webapi: Conflict. 1692fd568ed5beaa9fb4780fe4c3097943". You have to remove (or rename) that
+
+ERROR: for dbserver  Cannot create container for service dbserver: Confli336881d032a1ca60a69a3080b4f3ee2d3b1c689b". You have to remove (or rename)
+
+ERROR: for webapi  Cannot create container for service webapi: Conflict. 1692fd568ed5beaa9fb4780fe4c3097943". You have to remove (or rename) that
+Encountered errors while bringing up the project.
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker rm dbserver
+dbserver
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker rm webapp
+webapp
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker rm webapi
+webapi
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker-compose up --build^C
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$ docker-compose up --build
+Building webapi
+Step 1/10 : FROM microsoft/dotnet:sdk AS build-env
+ ---> 409be5f5f635
+Step 2/10 : WORKDIR /app
+ ---> Using cache
+ ---> e8d578154c91
+Step 3/10 : COPY *.csproj ./
+ ---> Using cache
+ ---> 23bb11362fb9
+Step 4/10 : RUN dotnet restore
+ ---> Using cache
+ ---> 6dca30efce4e
+Step 5/10 : COPY . ./
+ ---> Using cache
+ ---> 2cd57941c963
+Step 6/10 : RUN dotnet publish -c Release -o out
+ ---> Using cache
+ ---> 5d5cce09655a
+Step 7/10 : FROM microsoft/dotnet:aspnetcore-runtime
+ ---> fbd2e2ad00ea
+Step 8/10 : WORKDIR /app
+ ---> Using cache
+ ---> 106420fdfe16
+Step 9/10 : COPY --from=build-env /app/out .
+ ---> Using cache
+ ---> 24f3489e0b90
+Step 10/10 : ENTRYPOINT ["dotnet", "webapi.dll"]
+ ---> Using cache
+ ---> 22bd7eb8eff5
+Successfully built 22bd7eb8eff5
+Successfully tagged webapi:latest
+Building webapp
+Step 1/4 : FROM nginx:alpine
+ ---> b411e34b4606
+Step 2/4 : COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
+ ---> Using cache
+ ---> 545e64ff1307
+Step 3/4 : COPY ./dist /usr/share/nginx/app/
+ ---> Using cache
+ ---> 4551c3ffdd9d
+Step 4/4 : EXPOSE 80
+ ---> Using cache
+ ---> 449c64b295dc
+Successfully built 449c64b295dc
+Successfully tagged webapp:latest
+Creating webapi   ... done
+Creating dbserver ... done
+Creating webapp   ... done
+Attaching to dbserver, webapi, webapp
+dbserver    | 2019-03-18 21:51:43.309 UTC [1] LOG:  listening on IPv4 add
+dbserver    | 2019-03-18 21:51:43.309 UTC [1] LOG:  listening on IPv6 add
+dbserver    | 2019-03-18 21:51:43.566 UTC [1] LOG:  listening on Unix soc
+dbserver    | 2019-03-18 21:51:44.355 UTC [1] LOG:  could not resolve "lo
+dbserver    | 2019-03-18 21:51:44.355 UTC [1] LOG:  disabling statistics
+dbserver    | 2019-03-18 21:51:44.356 UTC [1] WARNING:  autovacuum not st
+dbserver    | 2019-03-18 21:51:44.356 UTC [1] HINT:  Enable the "track_co
+dbserver    | 2019-03-18 21:51:44.746 UTC [27] LOG:  database system was
+webapi      | Hosting environment: Production
+webapi      | Content root path: C:\app
+webapi      | Now listening on: http://[::]:80
+webapi      | Application started. Press Ctrl+C to shut down.
+dbserver    | 2019-03-18 21:53:38.834 UTC [27] LOG:  database system was
+dbserver    | 2019-03-18 21:53:39.305 UTC [27] LOG:  redo starts at 0/167
+dbserver    | 2019-03-18 21:53:39.308 UTC [27] LOG:  invalid record lengt
+dbserver    | 2019-03-18 21:53:39.308 UTC [27] LOG:  redo done at 0/167C3
+dbserver    | 2019-03-18 21:53:43.514 UTC [1] LOG:  database system is re
+webapp      | 192.168.1.28 - - [18/Mar/2019:21:54:03 +0000] "GET / HTTP/1Gecko) Chrome/72.0.3626.121 Safari/537.36" "-"
+webapp      | 192.168.1.28 - - [18/Mar/2019:21:54:08 +0000] "GET /static/ozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+webapp      | 192.168.1.28 - - [18/Mar/2019:21:54:08 +0000] "GET /static/ (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chr
+webapp      | 192.168.1.28 - - [18/Mar/2019:21:54:09 +0000] "GET /static/0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Ch
+webapp      | 192.168.1.28 - - [18/Mar/2019:21:54:09 +0000] "GET /static/ndows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/
+webapp      | 192.168.1.28 - - [18/Mar/2019:21:54:10 +0000] "GET /static/ozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like
+Stopping webapp   ... done
+Stopping dbserver ... done
+Stopping webapi   ... done
+Gracefully stopping... (press Ctrl+C again to force)
+
+katyl@DESKTOP-DBFBLUF MINGW64 ~/Workspace/OIT/CST356/CST356-LABS/FinalPro
+$
