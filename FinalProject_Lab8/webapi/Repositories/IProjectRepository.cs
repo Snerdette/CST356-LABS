@@ -7,7 +7,7 @@ public interface IProjectRepository
 
     Project GetProjectById(long projectId);
 
-   // bool isGroupProject(Project project);
+    bool isGroupProject(Project project);
 
     void AddProject(Project project);
 

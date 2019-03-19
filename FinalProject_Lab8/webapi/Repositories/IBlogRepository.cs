@@ -7,8 +7,6 @@ public interface IBlogRepository
 
     Blog GetBlogById(long blogId);
 
-   // bool isGroupBlog(Blog blog);
-
     void AddBlog(Blog blog);
 
     void UpdateBlog(Blog blog);

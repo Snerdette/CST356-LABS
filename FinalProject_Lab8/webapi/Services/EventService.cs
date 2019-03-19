@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.Extensions.Logging;
 using Database.Entities;
-using EventBusinessRules;
 
 public class EventService : IEventService
 {
@@ -14,7 +13,7 @@ public class EventService : IEventService
         _logger = loggerFactory.CreateLogger("Controllers.EventService");
     }
 
-    public List<EventDto> GetAllEvents()
+    public List<Event> GetAllEvents()
     {
         var eventDtos = new List<EventDto>();
 
@@ -24,15 +23,8 @@ public class EventService : IEventService
                 EventId = event.EventId,
                 Name = event.Name,
                 Location = event.Location,
-
-                Date = Event.Date
+                Date = event.Date
             });
-
-             if (BusinessRules.isLowInventory(product))
-            {
-                _logger.LogInformation("Found Event: " + product.EventId);
-            }
-
         }
 
         return eventDtos;

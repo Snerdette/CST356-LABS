@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Database;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 using Database.Entities;
 
-namespace Database.Entities
+namespace webapi.Controllers
 {
-    
+    [Route("api/[controller]")]
+    [ApiController]
+    [Authorize]
+    public class EventController : ControllerBase
+    {
         private readonly IEventService _eventService;
         private readonly ILogger _logger;
 
@@ -22,11 +27,24 @@ namespace Database.Entities
         [Authorize]
         public ActionResult<List<EventDto>> GetAllEvents()
         {
+            _logger.LogDebug("Getting all events");
+            // return Ok(_dbContext.Event.Include(p => p.Manufacturer).ToList());
+
             return _eventService.GetAllEvents();
         }
 
-        [HttpGet("{eventId}")]
-        public ActionResult<Event> GetEvent(int eventId)
+        [HttpGet]
+        [Authorize]
+        public ActionResult<List<EventDto>> GetEventById()
+        {
+            _logger.LogDebug("Getting all events");
+            // return Ok(_dbContext.Event.Include(p => p.Manufacturer).ToList());
+
+            return _eventService.GetAllEvents();
+        }
+        /* 
+        [HttpGet("{productId}")]
+        public ActionResult<Event> GetEventById(int eventId)
         {
             var event = _eventService.GetEventById(eventId);
 
@@ -37,16 +55,7 @@ namespace Database.Entities
             }
         }
 
-        [HttpPost]
-        public ActionResult<Event> AddEvent(Event event)
-        {
-            _eventService.AddEvent(event);
-
-            // return CreatedAtAction(nameof(GetEvent), new { id = event.EventId }, event);
-
-            return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status201Created);
-        }
-
+        */
         [HttpPut("{eventId}")]
         public ActionResult UpdateEvent(long eventId, Event eventUpdate)
         {

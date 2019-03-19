@@ -27,14 +27,11 @@ namespace webapi.Controllers
         [Authorize]
         public ActionResult<List<ProjectDto>> GetAllProjects()
         {
-            _logger.LogDebug("Getting all projects");
-            // return Ok(_dbContext.Project.Include(p => p.Manufacturer).ToList());
-
             return _projectService.GetAllProjects();
         }
 
         [HttpGet("{projectId}")]
-        public ActionResult<Project> GetProject(int projectId)
+        public ActionResult<Project> GetProjectById(int projectId)
         {
             var project = _projectService.GetProjectById(projectId);
 

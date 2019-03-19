@@ -3,57 +3,73 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Database;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 using Database.Entities;
 
-namespace Database.Entities
+namespace webapi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BlogController : ControllerBase
     {
+        private readonly IBlogService _blogService;
+        private readonly ILogger _logger;
 
-        private readonly WorkContext _dbContext;
-
-        public BlogController(WorkContext dbContext)
+        public BlogController(IBlogService blogService, ILoggerFactory loggerFactory)
         {
-            _dbContext = dbContext;
-        }
-       
-         [HttpGet]
-        public ActionResult<List<Blog>> GetAllBlogs()
-        {
-            return Ok(_dbContext.Blog.ToList());
-        }
-        
-         public ActionResult<int> getBlogCount(Blog blog)
-        {
-            return Blog.BlogCount;
+            _blogService = blogService;
+            _logger = loggerFactory.CreateLogger("Controllers.BlogController");
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        [HttpGet]
+        [Authorize]
+        public ActionResult<List<BlogDto>> GetAllBlogs()
         {
-            return "value";
+            _logger.LogDebug("Getting all blogs");
+            // return Ok(_dbContext.Blog.Include(p => p.Manufacturer).ToList());
+
+            return _blogService.GetAllBlogs();
         }
 
-        // POST api/values
+        [HttpGet("{blogId}")]
+        public ActionResult<Blog> GetBlog(int blogId)
+        {
+            var blog = _blogService.GetBlogById(blogId);
+
+            if (blog != null) {
+                return blog;
+            } else {
+                return NotFound();
+            }
+        }
+
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<Blog> AddBlog(Blog blog)
         {
+            _blogService.AddBlog(blog);
+
+            // return CreatedAtAction(nameof(GetBlog), new { id = blog.BlogId }, blog);
+
+            return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status201Created);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{blogId}")]
+        public ActionResult UpdateBlog(long blogId, Blog blogUpdate)
         {
+            blogUpdate.BlogId = blogId;
+            _blogService.UpdateBlog(blogUpdate);
+
+            return NoContent();
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{blogId}")]
+        public ActionResult DeleteBlog(int blogId)
         {
+            _blogService.DeleteBlog(blogId);
+
+            return Ok();
         }
     }
 }

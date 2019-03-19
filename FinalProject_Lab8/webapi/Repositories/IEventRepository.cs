@@ -7,8 +7,6 @@ public interface IEventRepository
 
     Event GetEventById(long eventId);
 
-   // bool isGroupEvent(Event event);
-
     void AddEvent(Event event);
 
     void UpdateEvent(Event event);

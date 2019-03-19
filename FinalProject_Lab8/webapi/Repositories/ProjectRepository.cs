@@ -36,18 +36,20 @@ public class ProjectRepository : IProjectRepository
         return _dbContext.Project.SingleOrDefault(p => p.ProjectId == projectId);
     }
 
-    public bool isGroupProject(Project project){
+    public bool isGroup(Project project){
        // _dbContext.getProjectById(project);
-       
-       if(_dbcontext.Project.isGroupProject(project)){
+       /* 
+       if(_dbcontext.Project.isGroup(project)){
            return true;
        }
-      //return _dbcontext.Project.isGroupProject(project);
+       var id = project.ProjectId;
+       bool isGroup = _dbContext.getProjectById(id);
+        if(project.getIsGroup()){
+            isGroup = true;
+        }*/
 
-        //if(project.getIsGroup()){
-        //    isGroup = true;
-        //}
-        //return isGroup;
+        var isGroup = true;
+        return isGroup;
     }
 
     public void AddProject(Project project)

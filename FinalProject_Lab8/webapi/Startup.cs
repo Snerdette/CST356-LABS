@@ -35,7 +35,7 @@ namespace webapi
             
             services.AddSingleton<IConfiguration>(Configuration);
             
-            services.AddDbContext<SchoolContext>(options =>
+            services.AddDbContext<WorkContext>(options =>
                 options.UseNpgsql(Configuration.GetConnectionString("ProjectDatabase")));
                 
             services.AddMvc().AddJsonOptions(

@@ -20,9 +20,6 @@ namespace Database.Entities{
         [Column("date")]
         public string Date {get; set;}
 
-        [Column("blog_count")]
-        static public int BlogCount {get; set;}
-
     [Column("project_id")]
         public long ProjectId { get; set; }
         public Project Project { get; set; }

@@ -13,33 +13,27 @@ namespace Database
         }
         
         public DbSet<Project> Project { get; set; }
-        
-        //public DbSet<Event> Event { get; set; }
          
-        public DbSet<Project> getProject { get; set; } 
 
         public DbSet<Project> getProjectById { get; set; }
 
         public DbSet<Project> getProjectCount { get; set; }
 
-        public bool isGroup {get; set; }
+        public bool isGroupProject {get; set; }
 
         public DbSet<Event> Event { get; set; }
-         
-       public DbSet<Event> getEvent { get; set; } 
+
+        public DbSet<Event> addEvent { get; set; }
 
         public DbSet<Event> getEventById { get; set; }
 
         public DbSet<Event> getEventCount { get; set; }
 
 
-        public DbSet<Blog> Blog { get; set; }
-         
-       public DbSet<Blog> getBlog { get; set; } 
+        public DbSet<Blog> Blog { get; set; } 
 
         public DbSet<Blog> getBlogById { get; set; }
 
-        public DbSet<Blog> getBlogCount { get; set; }
 
     }
 }
