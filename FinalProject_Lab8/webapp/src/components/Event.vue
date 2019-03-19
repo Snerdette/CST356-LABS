@@ -1,54 +1,50 @@
 <template>
     <div>
         <div v-if='operation == "list"'>
-            <h2 class='section-heading'>Projects</h2>
+            <h2 class='section-heading'>My Event</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>Project title</th>
-                        <th>Type</th>
-                        <th>Site</th>
-                        <th>Start Date:</th>
-                        <th>End Date:</th>
+                        <th>Name</th>
+                        <th>Location</th>
+                        <th>Date:</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="project in projects" :key="project.projectId">
-                        <td>{{ project.Title }}</td>
-                        <td>{{ project.Type }}</td>
-                        <td>{{ project.Site }}</td>
-                        <td>${{ project.StartDate }}</td>
-                        <td>{{ project.EndDate }}</td>
+                    <tr v-for="event in events" :key="event.eventId">
+                        <td>{{ event.Name }}</td>
+                        <td>{{ event.Location }}</td>
+                        <td>{{ event.Date }}</td>
                         <td>
-                            <button v-on:click='displayProjectDetails(project.projectId)'>Details</button>
-                            <button v-on:click='displayUpdateProject(project.projectId)'>Update</button>
-                            <button v-on:click='deleteProject(project.projectId)'>Delete</button>
+                            <button v-on:click='displayEventDetails(event.eventId)'>Details</button>
+                            <button v-on:click='displayUpdateEvent(event.eventId)'>Update</button>
+                            <button v-on:click='deleteEvent(event.eventId)'>Delete</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <button id='addBtn' v-on:click='displayAddProject()'>Add Project</button>
+            <button id='addBtn' v-on:click='displayAddEvent()'>Add Event</button>
         </div>
 
         <div v-if='operation == "add"'>
-            <h2 class='section-heading'>Add Project</h2>
+            <h2 class='section-heading'>Add Event</h2>
         
             <form>
                 <div class='form-entry'>
-                    Title: <input type='text' v-model='title'/>
+                    Name: <input type='text' v-model='Name'/>
                 </div>
 
                 <div class='form-entry'>
-                    Type: <input type='text' v-model='type'/>
+                    Location: <input type='text' v-model='Location'/>
                 </div>
 
                 <div class='form-entry'>
-                    Site: <input type='text' v-model='site'/>
+                    Date: <input type='text' v-model='date'/>
                 </div>
 
                 <div class='form-entry'>
-                    <button v-on:click='addProject'>Add Project</button>
+                    <button v-on:click='addEvent'>Add Event</button>
                     <button v-on:click='cancel'>Cancel</button>
                 </div>
             </form>
@@ -56,18 +52,18 @@
         </div>
 
         <div v-if='operation == "detail"'>
-            <h2 class='section-heading'>Project Detail</h2>
+            <h2 class='section-heading'>Event Detail</h2>
 
             <div class='form-entry'>
-                title: {{ Title }}
+                Name: {{ Name }}
             </div>
 
             <div class='form-entry'>
-                Type: {{ Type }}
+                Location: {{ Location }}
             </div>
 
             <div class='form-entry'>
-                Site: {{ Site }}
+                Date: {{ Date }}
             </div>
 
             <div class='form-entry'>
@@ -76,23 +72,23 @@
         </div>
 
         <div v-if='operation == "update"'>
-            <h2 class='section-heading'>Update Project</h2>
+            <h2 class='section-heading'>Update Event</h2>
         
             <form>
-                <div class='form-entry'>
-                    title: {{ Title }}
+               <div class='form-entry'>
+                    Name: {{ Name }}
                 </div>
 
                 <div class='form-entry'>
-                    Type: {{ Type }}
+                    Location: {{ Location }}
                 </div>
 
                 <div class='form-entry'>
-                    Site: {{ Site }}
+                    Date: {{ Date }}
                 </div>
 
                 <div class='form-entry'>
-                    <button v-on:click='updateProject'>Update Project</button>
+                    <button v-on:click='updateEvent'>Update Event</button>
                     <button v-on:click='cancel'>Cancel</button>
                 </div>
             </form>
@@ -103,17 +99,17 @@
 <script>
     import Vue from 'vue';
     export default {
-        name: 'project',
+        name: 'event',
         props: ['auth'],
         
         data () {
             return {
-                projects: [],
+                events: [],
                 operation: 'list',
-                Title: undefined,
-                Type: undefined,
-                Site: undefined,
-                projectUpdateId: undefined
+                Name: undefined,
+                Location: undefined,
+                Date: undefined,
+                eventUpdateId: undefined
             }
         },
         methods: {
@@ -125,45 +121,45 @@
                     }
                 }
             },
-            getProjects: function() {
-                let url = process.env.PROJECT_API;
+            getEvents: function() {
+                let url = process.env.EVENT_API;
                 Vue.axios.get(url, this.getAuthHeader()).then(
                     (response) => {
-                        this.projects = response.data;
+                        this.events = response.data;
                     },
                     (error) => {
                         console.log(error)
                     }
                 );
             },
-            getProject: function(projectId) {
-                let url = `${process.env.PROJECT_API}/${projectId}`;
+            getEvent: function(eventId) {
+                let url = `${process.env.EVENT_API}/${eventId}`;
                 Vue.axios.get(url, this.getAuthHeader()).then(
                     (response) => {
-                        this.Title = response.data.Title;
-                        this.Type = response.data.Type;
-                        this.Site = response.data.Site;
+                        this.Name = response.data.Name;
+                        this.Location = response.data.Location;
+                        this.Date = response.data.Date;
                     },
                     (error) => {
                         console.log(error)
                     }
                 );
             },
-            displayAddProject: function(projectId) {
-                this.Title = undefined;
-                this.Type = undefined;
-                this.Site = undefined;
+            displayAddEvent: function(eventId) {
+                this.Name = undefined;
+                this.Location = undefined;
+                this.Date = undefined;
                 this.operation = 'add';
             },
-            addProject: function(projectId) {
-                let url = `${process.env.PROJECT_API}`;
+            addEvent: function(eventId) {
+                let url = `${process.env.EVENT_API}`;
                 Vue.axios.post(url, {
-                    Title: this.Title,
-                    Type: this.Type,
-                    Site: this.Site
+                    Heading: this.Heading,
+                    Body: this.Body,
+                    Date: this.Date
                 }, this.getAuthHeader()).then(
                     (response) => {
-                        this.getProjects();
+                        this.getEvents();
                         this.operation = 'list';
                     },
                     (error) => {
@@ -171,24 +167,24 @@
                     }
                 );
             },
-            displayProjectDetails: function(projectId) {
-                this.getProject(projectId);
+            displayEventDetails: function(eventId) {
+                this.getEvent(eventId);
                 this.operation = 'detail';
             },
-            displayUpdateProject: function(projectId) {
-                this.projectUpdateId = projectId;
-                this.getProject(projectId);
+            displayUpdateEvent: function(eventId) {
+                this.eventUpdateId = eventId;
+                this.getEvent(eventId);
                 this.operation = 'update';
             },
-            updateProject: function(projectId) {
-                let url = `${process.env.PROJECT_API}/${this.projectUpdateId}`;
+            updateEvent: function(eventId) {
+                let url = `${process.env.EVENT_API}/${this.eventUpdateId}`;
                 Vue.axios.put(url, {
-                    Title: this.Title,
-                    Type: this.Type,
-                    Site: this.Site
+                    Heading: this.Heading,
+                    Body: this.Body,
+                    Date: this.Date
                 }, this.getAuthHeader()).then(
                     (response) => {
-                        this.getProjects();
+                        this.getEvents();
                         this.operation = 'list';
                     },
                     (error) => {
@@ -196,11 +192,11 @@
                     }
                 );
             },
-            deleteProject: function(projectId) {
-                let url = `${process.env.PROJECT_API}/${projectId}`;
+            deleteEvent: function(eventId) {
+                let url = `${process.env.EVENT_API}/${eventId}`;
                 Vue.axios.delete(url, this.getAuthHeader()).then(
                     (response) => {
-                        this.getProjects();
+                        this.getEvents();
                         this.operation = 'list';
                     },
                     (error) => {
@@ -213,7 +209,7 @@
             }
         },
         mounted() {
-            this.getProjects();
+            this.getEvents();
             this.operation = 'list';
         }
     }

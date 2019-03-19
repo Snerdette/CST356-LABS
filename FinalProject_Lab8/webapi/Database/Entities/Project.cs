@@ -22,7 +22,7 @@ namespace Database.Entities{
         [Column("start_date")]
         public string StartDate {get; set;}
         
-        [Column("event_date")]
+        [Column("end_date")]
         public string EndDate {get; set;}
 
     [Column("event_id")]
@@ -34,5 +34,5 @@ namespace Database.Entities{
         public Blog Blog { get; set; }
 
     }
-    }
+    
 }

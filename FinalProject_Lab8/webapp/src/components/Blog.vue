@@ -1,11 +1,11 @@
 <template>
     <div>
         <div v-if='operation == "list"'>
-            <h2 class='section-heading'>Projects</h2>
+            <h2 class='section-heading'>My Blog</h2>
             <table>
                 <thead>
                     <tr>
-                        <th>Project title</th>
+                        <th>Blog Heading</th>
                         <th>Type</th>
                         <th>Site</th>
                         <th>Start Date:</th>
@@ -13,42 +13,40 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="project in projects" :key="project.projectId">
-                        <td>{{ project.Title }}</td>
-                        <td>{{ project.Type }}</td>
-                        <td>{{ project.Site }}</td>
-                        <td>${{ project.StartDate }}</td>
-                        <td>{{ project.EndDate }}</td>
+                    <tr v-for="blog in blogs" :key="blog.blogId">
+                        <td>{{ blog.Heading }}</td>
+                        <td>{{ blog.Body }}</td>
+                        <td>{{ blog.Date }}</td>
                         <td>
-                            <button v-on:click='displayProjectDetails(project.projectId)'>Details</button>
-                            <button v-on:click='displayUpdateProject(project.projectId)'>Update</button>
-                            <button v-on:click='deleteProject(project.projectId)'>Delete</button>
+                            <button v-on:click='displayBlogDetails(blog.blogId)'>Details</button>
+                            <button v-on:click='displayUpdateBlog(blog.blogId)'>Update</button>
+                            <button v-on:click='deleteBlog(blog.blogId)'>Delete</button>
                         </td>
                     </tr>
                 </tbody>
             </table>
 
-            <button id='addBtn' v-on:click='displayAddProject()'>Add Project</button>
+            <button id='addBtn' v-on:click='displayAddBlog()'>Add Blog</button>
         </div>
 
         <div v-if='operation == "add"'>
-            <h2 class='section-heading'>Add Project</h2>
+            <h2 class='section-heading'>Add Blog</h2>
         
             <form>
                 <div class='form-entry'>
-                    Title: <input type='text' v-model='title'/>
+                    Heading: <input type='text' v-model='Heading'/>
                 </div>
 
                 <div class='form-entry'>
-                    Type: <input type='text' v-model='type'/>
+                    Body: <input type='text' v-model='Body'/>
                 </div>
 
                 <div class='form-entry'>
-                    Site: <input type='text' v-model='site'/>
+                    Date: <input type='text' v-model='date'/>
                 </div>
 
                 <div class='form-entry'>
-                    <button v-on:click='addProject'>Add Project</button>
+                    <button v-on:click='addBlog'>Add Blog</button>
                     <button v-on:click='cancel'>Cancel</button>
                 </div>
             </form>
@@ -56,18 +54,18 @@
         </div>
 
         <div v-if='operation == "detail"'>
-            <h2 class='section-heading'>Project Detail</h2>
+            <h2 class='section-heading'>Blog Detail</h2>
 
             <div class='form-entry'>
-                title: {{ Title }}
+                Heading: {{ Heading }}
             </div>
 
             <div class='form-entry'>
-                Type: {{ Type }}
+                Body: {{ Body }}
             </div>
 
             <div class='form-entry'>
-                Site: {{ Site }}
+                Date: {{ Date }}
             </div>
 
             <div class='form-entry'>
@@ -76,23 +74,23 @@
         </div>
 
         <div v-if='operation == "update"'>
-            <h2 class='section-heading'>Update Project</h2>
+            <h2 class='section-heading'>Update Blog</h2>
         
             <form>
                 <div class='form-entry'>
-                    title: {{ Title }}
+                    Heading: {{ Heading }}
                 </div>
 
                 <div class='form-entry'>
-                    Type: {{ Type }}
+                    Body: {{ Body }}
                 </div>
 
                 <div class='form-entry'>
-                    Site: {{ Site }}
+                    Date: {{ Date }}
                 </div>
 
                 <div class='form-entry'>
-                    <button v-on:click='updateProject'>Update Project</button>
+                    <button v-on:click='updateBlog'>Update Blog</button>
                     <button v-on:click='cancel'>Cancel</button>
                 </div>
             </form>
@@ -103,17 +101,17 @@
 <script>
     import Vue from 'vue';
     export default {
-        name: 'project',
+        name: 'blog',
         props: ['auth'],
         
         data () {
             return {
-                projects: [],
+                blogs: [],
                 operation: 'list',
-                Title: undefined,
-                Type: undefined,
-                Site: undefined,
-                projectUpdateId: undefined
+                Heading: undefined,
+                Body: undefined,
+                Date: undefined,
+                blogUpdateId: undefined
             }
         },
         methods: {
@@ -125,45 +123,45 @@
                     }
                 }
             },
-            getProjects: function() {
-                let url = process.env.PROJECT_API;
+            getBlogs: function() {
+                let url = process.env.BLOG_API;
                 Vue.axios.get(url, this.getAuthHeader()).then(
                     (response) => {
-                        this.projects = response.data;
+                        this.blogs = response.data;
                     },
                     (error) => {
                         console.log(error)
                     }
                 );
             },
-            getProject: function(projectId) {
-                let url = `${process.env.PROJECT_API}/${projectId}`;
+            getBlog: function(blogId) {
+                let url = `${process.env.BLOG_API}/${blogId}`;
                 Vue.axios.get(url, this.getAuthHeader()).then(
                     (response) => {
-                        this.Title = response.data.Title;
-                        this.Type = response.data.Type;
-                        this.Site = response.data.Site;
+                        this.Heading = response.data.Heading;
+                        this.Body = response.data.Body;
+                        this.Date = response.data.Date;
                     },
                     (error) => {
                         console.log(error)
                     }
                 );
             },
-            displayAddProject: function(projectId) {
-                this.Title = undefined;
-                this.Type = undefined;
-                this.Site = undefined;
+            displayAddBlog: function(blogId) {
+                this.Heading = undefined;
+                this.Body = undefined;
+                this.Date = undefined;
                 this.operation = 'add';
             },
-            addProject: function(projectId) {
-                let url = `${process.env.PROJECT_API}`;
+            addBlog: function(blogId) {
+                let url = `${process.env.BLOG_API}`;
                 Vue.axios.post(url, {
-                    Title: this.Title,
-                    Type: this.Type,
-                    Site: this.Site
+                    Heading: this.Heading,
+                    Body: this.Body,
+                    Date: this.Date
                 }, this.getAuthHeader()).then(
                     (response) => {
-                        this.getProjects();
+                        this.getBlogs();
                         this.operation = 'list';
                     },
                     (error) => {
@@ -171,24 +169,24 @@
                     }
                 );
             },
-            displayProjectDetails: function(projectId) {
-                this.getProject(projectId);
+            displayBlogDetails: function(blogId) {
+                this.getBlog(blogId);
                 this.operation = 'detail';
             },
-            displayUpdateProject: function(projectId) {
-                this.projectUpdateId = projectId;
-                this.getProject(projectId);
+            displayUpdateBlog: function(blogId) {
+                this.blogUpdateId = blogId;
+                this.getBlog(blogId);
                 this.operation = 'update';
             },
-            updateProject: function(projectId) {
-                let url = `${process.env.PROJECT_API}/${this.projectUpdateId}`;
+            updateBlog: function(blogId) {
+                let url = `${process.env.BLOG_API}/${this.blogUpdateId}`;
                 Vue.axios.put(url, {
-                    Title: this.Title,
-                    Type: this.Type,
-                    Site: this.Site
+                    Heading: this.Heading,
+                    Body: this.Body,
+                    Date: this.Date
                 }, this.getAuthHeader()).then(
                     (response) => {
-                        this.getProjects();
+                        this.getBlogs();
                         this.operation = 'list';
                     },
                     (error) => {
@@ -196,11 +194,11 @@
                     }
                 );
             },
-            deleteProject: function(projectId) {
-                let url = `${process.env.PROJECT_API}/${projectId}`;
+            deleteBlog: function(blogId) {
+                let url = `${process.env.BLOG_API}/${blogId}`;
                 Vue.axios.delete(url, this.getAuthHeader()).then(
                     (response) => {
-                        this.getProjects();
+                        this.getBlogs();
                         this.operation = 'list';
                     },
                     (error) => {
@@ -213,7 +211,7 @@
             }
         },
         mounted() {
-            this.getProjects();
+            this.getBlogs();
             this.operation = 'list';
         }
     }

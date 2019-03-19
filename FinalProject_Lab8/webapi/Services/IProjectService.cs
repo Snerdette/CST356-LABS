@@ -5,5 +5,11 @@ public interface IProjectService
 {
     List<ProjectDto> GetAllProjects();
 
-    //bool isGroupProject(Project project);
+    Project GetProjectById(long projectId);
+
+    void AddProject(Project project);
+
+    void UpdateProject(Project project);
+
+    void DeleteProject(long projectId);
 }

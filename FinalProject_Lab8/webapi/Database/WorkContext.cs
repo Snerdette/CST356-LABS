@@ -22,6 +22,8 @@ namespace Database
 
         public DbSet<Project> getProjectCount { get; set; }
 
+        public bool isGroup {get; set; }
+
         public DbSet<Event> Event { get; set; }
          
        public DbSet<Event> getEvent { get; set; } 

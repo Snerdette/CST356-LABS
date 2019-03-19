@@ -11,4 +11,6 @@ public class ProjectDto
 
     public string EndDate {get; set;}
 
+    public string IsGroup {get; set;}
+
 }

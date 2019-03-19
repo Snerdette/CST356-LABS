@@ -8,63 +8,60 @@ using Database.Entities;
 
 namespace Database.Entities
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class EventController : ControllerBase
-    {
+    
+        private readonly IEventService _eventService;
+        private readonly ILogger _logger;
 
-        private readonly WorkContext _dbContext;
-
-        public EventController(WorkContext dbContext)
+        public EventController(IEventService eventService, ILoggerFactory loggerFactory)
         {
-            _dbContext = dbContext;
-        }
-       
-         [HttpGet]
-        public ActionResult<List<Event>> GetAllEvents()
-        {
-            return Ok(_dbContext.Event.ToList());
+            _eventService = eventService;
+            _logger = loggerFactory.CreateLogger("Controllers.EventController");
         }
 
-        /* 
-         public ActionResult<Event> getSpecial(int id)
+        [HttpGet]
+        [Authorize]
+        public ActionResult<List<EventDto>> GetAllEvents()
         {
-             var event = _dbContext.getEvent(id);
+            return _eventService.GetAllEvents();
+        }
+
+        [HttpGet("{eventId}")]
+        public ActionResult<Event> GetEvent(int eventId)
+        {
+            var event = _eventService.GetEventById(eventId);
 
             if (event != null) {
                 return event;
-            } 
-            return event;
-        }*/
-
-         public ActionResult<int> getEventCount(Event event)
-        {
-            return Event.EventCount;
+            } else {
+                return NotFound();
+            }
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<Event> AddEvent(Event event)
         {
+            _eventService.AddEvent(event);
+
+            // return CreatedAtAction(nameof(GetEvent), new { id = event.EventId }, event);
+
+            return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status201Created);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{eventId}")]
+        public ActionResult UpdateEvent(long eventId, Event eventUpdate)
         {
+            eventUpdate.EventId = eventId;
+            _eventService.UpdateEvent(eventUpdate);
+
+            return NoContent();
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{eventId}")]
+        public ActionResult DeleteEvent(int eventId)
         {
+            _eventService.DeleteEvent(eventId);
+
+            return Ok();
         }
     }
 }

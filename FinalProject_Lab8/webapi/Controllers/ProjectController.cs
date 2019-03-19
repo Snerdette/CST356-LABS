@@ -3,28 +3,40 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Database;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.Extensions.Logging;
 using Database.Entities;
 
 namespace webapi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProjectController : ControllerBase
     {
-        private readonly WorkContext _dbContext;
+        private readonly IProjectService _projectService;
+        private readonly ILogger _logger;
 
-        public ProjectController(WorkContext dbContext)
+        public ProjectController(IProjectService projectService, ILoggerFactory loggerFactory)
         {
-            _dbContext = dbContext;
+            _projectService = projectService;
+            _logger = loggerFactory.CreateLogger("Controllers.ProjectController");
         }
-        /* 
-        // GET api/values
+
         [HttpGet]
-        public ActionResult<List<Project>> Get()
+        [Authorize]
+        public ActionResult<List<ProjectDto>> GetAllProjects()
         {
-            var project = _dbContext.Project
-                .SingleOrDefault(p => p.ProjectId == project_id);
+            _logger.LogDebug("Getting all projects");
+            // return Ok(_dbContext.Project.Include(p => p.Manufacturer).ToList());
+
+            return _projectService.GetAllProjects();
+        }
+
+        [HttpGet("{projectId}")]
+        public ActionResult<Project> GetProject(int projectId)
+        {
+            var project = _projectService.GetProjectById(projectId);
 
             if (project != null) {
                 return project;
@@ -32,45 +44,32 @@ namespace webapi.Controllers
                 return NotFound();
             }
         }
-        */
 
-          [HttpGet]
-        public ActionResult<List<Project>> GetAllProjects()
-        {
-            return Ok(_dbContext.Project.ToList());
-        }
-
-
-        /* 
-        private List<Project> getProjects(){
-            return _dbContext.getProjects();
-        }
-        */
-
-
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<Project> AddProject(Project project)
         {
+            _projectService.AddProject(project);
+
+            // return CreatedAtAction(nameof(GetProject), new { id = project.ProjectId }, project);
+
+            return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status201Created);
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{projectId}")]
+        public ActionResult UpdateProject(long projectId, Project projectUpdate)
         {
+            projectUpdate.ProjectId = projectId;
+            _projectService.UpdateProject(projectUpdate);
+
+            return NoContent();
         }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{projectId}")]
+        public ActionResult DeleteProject(int projectId)
         {
+            _projectService.DeleteProject(projectId);
+
+            return Ok();
         }
     }
 }
