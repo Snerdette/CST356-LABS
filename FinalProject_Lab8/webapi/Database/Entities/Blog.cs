@@ -20,14 +20,6 @@ namespace Database.Entities{
         [Column("date")]
         public string Date {get; set;}
 
-    [Column("project_id")]
-        public long ProjectId { get; set; }
-        public Project Project { get; set; }
-
-    [Column("event_id")]
-        public long EventId { get; set; }
-        public Event Event { get; set; }
-
     }
 }
 

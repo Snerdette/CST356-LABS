@@ -13,7 +13,7 @@ public class EventService : IEventService
         _logger = loggerFactory.CreateLogger("Controllers.EventService");
     }
 
-    public List<Event> GetAllEvents()
+    public List<EventDto> GetAllEvents()
     {
         var eventDtos = new List<EventDto>();
 
@@ -22,9 +22,12 @@ public class EventService : IEventService
             eventDtos.Add(new EventDto {
                 EventId = event.EventId,
                 Name = event.Name,
-                Location = event.Location,
-                Date = event.Date
+                Location = event.Location
             });
+            if (BusinessRules.isLowInventory(event))
+            {
+                _logger.LogInformation("Found low inventory event: " + event.EventId);
+            }
         }
 
         return eventDtos;

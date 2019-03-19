@@ -51,10 +51,6 @@ public class BlogRepository : IBlogRepository
             blog.Heading = blogUpdate.Heading;
             blog.Body = blogUpdate.Body;
             blog.Date = blogUpdate.Date;
-            //blog.Site = blogUpdate.Site;
-            //blog.StartDate = blogUpdate.StartDate;
-            //blog.EndDate = blogUpdate.EndDate;
-
 
             _dbContext.Update(blog);
 

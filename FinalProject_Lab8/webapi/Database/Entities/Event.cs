@@ -23,17 +23,6 @@ namespace Database.Entities{
         [Column("end_time")]
         public string EndTime {get; set;}
 
-        [Column("event_count")]
-        static public int EventCount {get; set;}
-
-    [Column("project_id")]
-        public long ProjectId { get; set; }
-        public Project Project { get; set; }
-
-    [Column("blog_id")]
-        public long BlogId { get; set; }
-        public Blog Blog { get; set; }
-
     }
 
 }

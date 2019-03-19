@@ -38,7 +38,7 @@ public class EventRepository : IEventRepository
 
     public void AddEvent(Event event)
     {
-        _dbContext.Event.Add(event);
+        _dbContext.Event.AddEvent(event);
         _dbContext.SaveChanges();
     }
 
@@ -50,7 +50,9 @@ public class EventRepository : IEventRepository
         {
             event.Name = eventUpdate.Name;
             event.Location = eventUpdate.Location;
-            event.Date = eventUpdate.Date;
+            event.startTime = eventUpdate.StartTime;
+
+            event.endTime = eventUpdate.EndTime;
 
             _dbContext.Update(event);
 

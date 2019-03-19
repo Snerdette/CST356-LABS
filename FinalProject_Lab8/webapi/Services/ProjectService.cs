@@ -28,9 +28,7 @@ public class ProjectService : IProjectService
                 ProjectId = project.ProjectId,
                 Title = project.Title,
                 Type = project.Type,
-                Site = project.Site,
-                StartDate = project.StartDate,
-                EndDate = project.EndDate
+                Site = project.Site
             });
             projectCount++;
         }

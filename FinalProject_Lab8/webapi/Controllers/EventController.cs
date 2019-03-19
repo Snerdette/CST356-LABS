@@ -42,20 +42,20 @@ namespace webapi.Controllers
 
             return _eventService.GetAllEvents();
         }
-        /* 
-        [HttpGet("{productId}")]
+         
+        [HttpGet("{eventId}")]
         public ActionResult<Event> GetEventById(int eventId)
         {
-            var event = _eventService.GetEventById(eventId);
+            var project = _eventService.GetEventById(eventId);
 
-            if (event != null) {
-                return event;
+            if (project != null) {
+                return project;
             } else {
                 return NotFound();
             }
         }
 
-        */
+        
         [HttpPut("{eventId}")]
         public ActionResult UpdateEvent(long eventId, Event eventUpdate)
         {

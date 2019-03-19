@@ -36,7 +36,7 @@ public class ProjectRepository : IProjectRepository
         return _dbContext.Project.SingleOrDefault(p => p.ProjectId == projectId);
     }
 
-    public bool isGroup(Project project){
+    public bool isGroupProject(Project project){
        // _dbContext.getProjectById(project);
        /* 
        if(_dbcontext.Project.isGroup(project)){
